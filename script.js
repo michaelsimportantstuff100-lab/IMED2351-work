@@ -3,7 +3,7 @@ var globalNumber = 10;
 console.log("Global Number:", globalNumber);
 
 // This is a string variable
-let greetingMessage = "Hello from JavaScript!";
+let greetingMessage = "Hello from Michael! :) ";
 console.log("Greeting Message:", greetingMessage);
 
 // This variable only exists inside this block
