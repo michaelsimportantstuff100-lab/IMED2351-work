@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>1.6 Assignment</title>
+  <title>Skibidi 2.4 Assignment Variables</title>
 </head>
 <body>
+  <h1>Skibidi Fortnite</h1>
+  <p>Open the browser console to see the Skibidi output.</p>
+
   <script src="script.js"></script>
 </body>
 </html>
