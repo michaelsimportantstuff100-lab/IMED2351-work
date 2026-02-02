@@ -1,13 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Skibidi 2.4 Assignment Variables</title>
-</head>
-<body>
-  <h1>Skibidi Fortnite</h1>
-  <p>Open the browser console to see the Skibidi output.</p>
+  <head>
+    <meta charset="UTF-8">
+      <title>Camera Exposure Helper</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #f5f5f5;
+            padding: 40px;
+            }
 
-  <script src="script.js"></script>
-</body>
+          input, button {
+            padding: 8px;
+            margin: 5px 0;
+            width: 200px;
+          }
+
+          button {
+            cursor: pointer;
+            background: #ff9800;
+            border: none;
+            font-weight: bold;
+          }
+
+          #output {
+            margin-top: 20px;
+            font-size: 1.1em;
+          }
+        </style>
+  </head>
+  <body>
+
+    <h1>📸 Camera Exposure Helper</h1>
+
+      <label>Aperture (f-stop)</label><br>
+      <input type="number" id="aperture" value="2.8"><br>
+
+      <label>Shutter Speed (seconds)</label><br>
+      <input type="number" id="shutter" value="0.01"><br>
+
+      <label>ISO</label><br>
+      <input type="number" id="iso" value="100"><br>
+
+      <button onclick="calculateExposure()">Calculate Exposure</button>
+      <div id="output"></div>
+    <script src="script.js"></script>
+  </body>
 </html>
