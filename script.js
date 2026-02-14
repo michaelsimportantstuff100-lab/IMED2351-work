@@ -1,44 +1,98 @@
-// Object with multiple properties and a method
-const camera = {
-  brand: "Canon",
-  sensor: "APS-C",
-  baseISO: 100,
+function generateReceipt() {
 
-  describeCamera: function () {
-    return `Camera: ${this.brand} (${this.sensor})`;
-  }
-};
+    // -----------------------------
+    // GET USER INPUT
+    // -----------------------------
 
-// Function #1 – calculates exposure value
-// Parameters IN: aperture, shutter, iso
-// Parameter OUT: exposure value
-function calculateEV(aperture, shutter, iso) {
-  return Math.log2((aperture ** 2) / shutter) - Math.log2(iso / 100);
-}
+    let playerName = document.getElementById("playerName").value;
+    let membershipLevel = document.getElementById("membershipLevel").value;
+    let ticketsPurchased = parseInt(document.getElementById("ticketsPurchased").value);
 
-// Function #2 – determines exposure rating
-function getExposureRating(ev) {
-  if (ev > 14) {
-    return "Very Bright Scene ☀️";
-  } else if (ev > 10) {
-    return "Normal Daylight 🌤️";
-  } else {
-    return "Low Light 🌙";
-  }
-}
+    let ticketPrice = 14.75;
+    let serviceFeeRate = 0.06;
 
-// Function #3 – invoked by button click event
-function calculateExposure() {
-  const aperture = Number(document.getElementById("aperture").value);
-  const shutter = Number(document.getElementById("shutter").value);
-  const iso = Number(document.getElementById("iso").value);
 
-  const ev = calculateEV(aperture, shutter, iso);
-  const rating = getExposureRating(ev);
+    // -----------------------------
+    // STRING METHOD
+    // Capitalize name properly
+    // -----------------------------
 
-  document.getElementById("output").innerHTML = `
-    <p>${camera.describeCamera()}</p>
-    <p>Exposure Value: <strong>${ev.toFixed(2)}</strong></p>
-    <p>Scene Type: <strong>${rating}</strong></p>
-  `;
+    playerName = playerName.charAt(0).toUpperCase() 
+                + playerName.slice(1).toLowerCase();
+
+
+    // -----------------------------
+    // NUMBER METHOD
+    // -----------------------------
+
+    let subtotal = ticketsPurchased * ticketPrice;
+    subtotal = subtotal.toFixed(2);   // number method
+
+
+    // -----------------------------
+    // IF CONDITIONAL
+    // Bulk discount
+    // -----------------------------
+
+    let discount = 0;
+
+    if (ticketsPurchased >= 5) {
+        discount = subtotal * 0.15;
+    } else {
+        discount = 0;
+    }
+
+
+    // -----------------------------
+    // SWITCH STATEMENT
+    // -----------------------------
+
+    let membershipBonus;
+
+    switch(membershipLevel) {
+
+        case "silver":
+            membershipBonus = "Free Drink Voucher";
+            break;
+
+        case "gold":
+            membershipBonus = "Free Snack + Priority Seating";
+            break;
+
+        case "platinum":
+            membershipBonus = "VIP Lounge Access + Free Merch";
+            break;
+
+        default:
+            membershipBonus = "Standard Access";
+    }
+
+
+    // -----------------------------
+    // FINAL CALCULATIONS
+    // -----------------------------
+
+    let serviceFee = (subtotal - discount) * serviceFeeRate;
+    let total = (subtotal - discount + serviceFee).toFixed(2);
+
+
+    // -----------------------------
+    // CONCATENATED STRING VARIABLE
+    // -----------------------------
+
+    let receipt = "------ GAME NIGHT RECEIPT ------\n"
+        + "Player: " + playerName + "\n"
+        + "Membership Level: " + membershipLevel.toUpperCase() + "\n"
+        + "Bonus: " + membershipBonus + "\n"
+        + "Tickets Purchased: " + ticketsPurchased + "\n"
+        + "Price per Ticket: $" + ticketPrice + "\n"
+        + "Subtotal: $" + subtotal + "\n"
+        + "Discount: $" + discount.toFixed(2) + "\n"
+        + "Service Fee: $" + serviceFee.toFixed(2) + "\n"
+        + "TOTAL DUE: $" + total + "\n"
+        + "--------------------------------";
+
+
+    // OUTPUT
+    document.getElementById("receiptOutput").innerText = receipt;
 }

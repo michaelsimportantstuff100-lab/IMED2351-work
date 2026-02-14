@@ -1,50 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
-      <title>Camera Exposure Helper</title>
-        <style>
-          body {
+    <title>Game Night Ticket Calculator</title>
+
+    <style>
+        body {
             font-family: Arial, sans-serif;
-            background: #111;
-            color: #f5f5f5;
-            padding: 40px;
-            }
+            background-color: #121212;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-          input, button {
+        .card {
+            background: #1f1f1f;
+            padding: 25px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input, select, button {
+            width: 100%;
             padding: 8px;
-            margin: 5px 0;
-            width: 200px;
-          }
-
-          button {
-            cursor: pointer;
-            background: #ff9800;
+            margin: 6px 0;
+            border-radius: 6px;
             border: none;
-            font-weight: bold;
-          }
+        }
 
-          #output {
-            margin-top: 20px;
-            font-size: 1.1em;
-          }
-        </style>
-  </head>
-  <body>
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
 
-    <h1>📸 Camera Exposure Helper</h1>
+        button:hover {
+            background-color: #45a049;
+        }
 
-      <label>Aperture (f-stop)</label><br>
-      <input type="number" id="aperture" value="2.8"><br>
+        pre {
+            margin-top: 15px;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+    </style>
+</head>
 
-      <label>Shutter Speed (seconds)</label><br>
-      <input type="number" id="shutter" value="0.01"><br>
+<body>
 
-      <label>ISO</label><br>
-      <input type="number" id="iso" value="100"><br>
+<div class="card">
+    <h2>Game Night Ticket Calculator</h2>
 
-      <button onclick="calculateExposure()">Calculate Exposure</button>
-      <div id="output"></div>
-    <script src="script.js"></script>
-  </body>
+    <input type="text" id="playerName" placeholder="Enter Your Name">
+
+    <select id="membershipLevel">
+        <option value="silver">Silver</option>
+        <option value="gold">Gold</option>
+        <option value="platinum">Platinum</option>
+    </select>
+
+    <input type="number" id="ticketsPurchased" placeholder="Number of Tickets">
+
+    <button onclick="generateReceipt()">Generate Receipt</button>
+
+    <pre id="receiptOutput"></pre>
+</div>
+
+<script src="script.js"></script>
+</body>
 </html>
