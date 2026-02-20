@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    transition: background-color 0.6s ease;
+    padding-top: 40px;
+}
+
+#emoji {
+    font-size: 70px;
+    margin: 10px;
+    transition: transform 0.3s ease;
+}
+
+#moodText {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+#moodDisplay {
+    margin-bottom: 20px;
+}
+
+/* Progress Bar */
+.progressContainer {
+    width: 60%;
+    height: 25px;
+    background-color: #ddd;
+    margin: 0 auto 20px auto;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#progressBar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.4s ease, background-color 0.4s ease;
+}
+
+#moodBars {
+    margin: 20px;
+}
+
+.bar {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    opacity: 0.85;
+}

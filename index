@@ -1,78 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Game Night Ticket Calculator</title>
+<html>
+    <head>
+        <title>Ultimate Mood Meter</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+        <body>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+            <h1>Ultimate Mood Meter</h1>
 
-        .card {
-            background: #1f1f1f;
-            padding: 25px;
-            border-radius: 12px;
-            width: 350px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
+                <div id="emoji">😐</div>
+                <div id="moodText">Mood Level 0</div>
+                <div id="moodDisplay">0 / 10</div>
 
-        h2 {
-            text-align: center;
-        }
+            <!-- Progress Bar -->
+                <div class="progressContainer">
+                    <div id="progressBar"></div>
+                </div>
 
-        input, select, button {
-            width: 100%;
-            padding: 8px;
-            margin: 6px 0;
-            border-radius: 6px;
-            border: none;
-        }
+                <div id="moodBars"></div>
 
-        button {
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
+                <div class="buttons">
+                    <button id="increaseMood">Increase Mood</button>
+                    <button id="decreaseMood">Decrease Mood</button>
+                    <button id="resetMood">Reset</button>
+                </div>
 
-        button:hover {
-            background-color: #45a049;
-        }
+            <!-- Derpy Sound -->
+            <audio id="derpSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
 
-        pre {
-            margin-top: 15px;
-            white-space: pre-wrap;
-            line-height: 1.6;
-        }
-    </style>
-</head>
-
-<body>
-
-<div class="card">
-    <h2>Game Night Ticket Calculator</h2>
-
-    <input type="text" id="playerName" placeholder="Enter Your Name">
-
-    <select id="membershipLevel">
-        <option value="silver">Silver</option>
-        <option value="gold">Gold</option>
-        <option value="platinum">Platinum</option>
-    </select>
-
-    <input type="number" id="ticketsPurchased" placeholder="Number of Tickets">
-
-    <button onclick="generateReceipt()">Generate Receipt</button>
-
-    <pre id="receiptOutput"></pre>
-</div>
-
-<script src="script.js"></script>
-</body>
+            <script src="script.js"></script>
+        </body>
 </html>

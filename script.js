@@ -1,98 +1,83 @@
-function generateReceipt() {
+let moodLevel = 0;
+const maxMood = 10;
 
-    // -----------------------------
-    // GET USER INPUT
-    // -----------------------------
+const moodDisplay = document.getElementById("moodDisplay");
+const moodBars = document.getElementById("moodBars");
+const emoji = document.getElementById("emoji");
+const moodText = document.getElementById("moodText");
+const progressBar = document.getElementById("progressBar");
+const sound = document.getElementById("derpSound");
 
-    let playerName = document.getElementById("playerName").value;
-    let membershipLevel = document.getElementById("membershipLevel").value;
-    let ticketsPurchased = parseInt(document.getElementById("ticketsPurchased").value);
+const increaseBtn = document.getElementById("increaseMood");
+const decreaseBtn = document.getElementById("decreaseMood");
+const resetBtn = document.getElementById("resetMood");
 
-    let ticketPrice = 14.75;
-    let serviceFeeRate = 0.06;
+const emojis = ["😴","😕","😐","🙂","😊","😄","😁","🤪","🤩","🔥","👑"];
 
+const colors = [
+    "#2c3e50",
+    "#34495e",
+    "#5dade2",
+    "#48c9b0",
+    "#52be80",
+    "#f4d03f",
+    "#f39c12",
+    "#eb984e",
+    "#e74c3c",
+    "#9b59b6",
+    "#8e44ad"
+];
 
-    // -----------------------------
-    // STRING METHOD
-    // Capitalize name properly
-    // -----------------------------
-
-    playerName = playerName.charAt(0).toUpperCase() 
-                + playerName.slice(1).toLowerCase();
-
-
-    // -----------------------------
-    // NUMBER METHOD
-    // -----------------------------
-
-    let subtotal = ticketsPurchased * ticketPrice;
-    subtotal = subtotal.toFixed(2);   // number method
-
-
-    // -----------------------------
-    // IF CONDITIONAL
-    // Bulk discount
-    // -----------------------------
-
-    let discount = 0;
-
-    if (ticketsPurchased >= 5) {
-        discount = subtotal * 0.15;
-    } else {
-        discount = 0;
+increaseBtn.addEventListener("click", function () {
+    if (moodLevel < maxMood) {
+        moodLevel++;
+        sound.play();
+        updateMood();
     }
+});
 
-
-    // -----------------------------
-    // SWITCH STATEMENT
-    // -----------------------------
-
-    let membershipBonus;
-
-    switch(membershipLevel) {
-
-        case "silver":
-            membershipBonus = "Free Drink Voucher";
-            break;
-
-        case "gold":
-            membershipBonus = "Free Snack + Priority Seating";
-            break;
-
-        case "platinum":
-            membershipBonus = "VIP Lounge Access + Free Merch";
-            break;
-
-        default:
-            membershipBonus = "Standard Access";
+decreaseBtn.addEventListener("click", function () {
+    if (moodLevel > 0) {
+        moodLevel--;
+        sound.play();
+        updateMood();
     }
+});
 
+resetBtn.addEventListener("click", function () {
+    moodLevel = 0;
+    updateMood();
+});
 
-    // -----------------------------
-    // FINAL CALCULATIONS
-    // -----------------------------
+function updateMood() {
 
-    let serviceFee = (subtotal - discount) * serviceFeeRate;
-    let total = (subtotal - discount + serviceFee).toFixed(2);
+    moodDisplay.textContent = moodLevel + " / 10";
+    moodText.textContent = "Mood Level " + moodLevel;
+    emoji.textContent = emojis[moodLevel];
 
+    document.body.style.backgroundColor = colors[moodLevel];
 
-    // -----------------------------
-    // CONCATENATED STRING VARIABLE
-    // -----------------------------
+    // Update Progress Bar
+    progressBar.style.width = (moodLevel * 10) + "%";
+    progressBar.style.backgroundColor = colors[moodLevel];
 
-    let receipt = "------ GAME NIGHT RECEIPT ------\n"
-        + "Player: " + playerName + "\n"
-        + "Membership Level: " + membershipLevel.toUpperCase() + "\n"
-        + "Bonus: " + membershipBonus + "\n"
-        + "Tickets Purchased: " + ticketsPurchased + "\n"
-        + "Price per Ticket: $" + ticketPrice + "\n"
-        + "Subtotal: $" + subtotal + "\n"
-        + "Discount: $" + discount.toFixed(2) + "\n"
-        + "Service Fee: $" + serviceFee.toFixed(2) + "\n"
-        + "TOTAL DUE: $" + total + "\n"
-        + "--------------------------------";
-
-
-    // OUTPUT
-    document.getElementById("receiptOutput").innerText = receipt;
+    // FOR LOOP
+    moodBars.innerHTML = "";
+    for (let i = 0; i < moodLevel; i++) {
+        const bar = document.createElement("div");
+        bar.classList.add("bar");
+        bar.style.backgroundColor = colors[moodLevel];
+        moodBars.appendChild(bar);
+    }
 }
+
+// WHILE LOOP (automatic mood drain)
+setInterval(function () {
+
+    while (moodLevel > 0) {
+        moodLevel--;
+        updateMood();
+        break; // prevent infinite loop
+    }
+
+}, 5000);
